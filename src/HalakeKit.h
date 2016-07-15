@@ -17,6 +17,8 @@
 #define ACC_FULL_SCALE_8_G       0x10
 #define ACC_FULL_SCALE_16_G      0x18
 
+#define HALAKE_KIT_SWITCH_PIN    0
+
 class HalakeKit {
   public:
   HalakeKit();
@@ -25,6 +27,7 @@ class HalakeKit {
   float accel_z();
   float accel_comp();
   void accel_print_xyz();
+  bool switch_pushed();
 
   private:
   uint8_t accel_buf[14];

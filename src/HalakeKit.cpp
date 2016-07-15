@@ -23,7 +23,6 @@ HalakeKit::HalakeKit() {
   // Arduino initializations
   Wire.begin(4, 14);
   delay(40);
-  //Serial.begin(115200);
 
   I2CwriteByte(MPU9250_ADDRESS,27,GYRO_FULL_SCALE_2000_DPS);
   I2CwriteByte(MPU9250_ADDRESS,28,ACC_FULL_SCALE_16_G);
@@ -77,4 +76,8 @@ void HalakeKit::accel_print_xyz() {
   Serial.print(": ");
   Serial.print(accel_comp());
   Serial.println();
+}
+
+bool HalakeKit::switch_pushed() {
+  return HIGH == digitalRead(HALAKE_KIT_SWITCH_PIN) ? false : true;
 }
