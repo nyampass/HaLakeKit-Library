@@ -25,11 +25,14 @@ unzip halakekit.zip
 You can get or print accel info.
 
 ```
-float accel_x();
-float accel_y();
-float accel_z();
-float accel_comp();
-void accel_print_xyz();
+HalakeKit halake_kit;
+
+Serial.println(halake_kit.accel_x());
+Serial.println(halake_kit.accel_y());
+Serial.println(halake_kit.accel_z());
+Serial.println(halake_kit.accel_comp());
+
+halake_kit.accel_print_xyz();
 ```
 
 ## Switch
@@ -37,7 +40,11 @@ void accel_print_xyz();
 You can get switch info about pushed or not.
 
 ```
-bool switch_pushed();
+HalakeKit halake_kit;
+
+if ( halake_kit.switch_pushed() ) {
+  // do something
+}
 ```
 
 # License
