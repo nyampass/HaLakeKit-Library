@@ -44,4 +44,4 @@ bool switch_pushed();
 
 # License
 
-???
+MIT
