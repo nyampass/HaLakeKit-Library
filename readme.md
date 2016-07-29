@@ -32,8 +32,6 @@ float accel_comp();
 void accel_print_xyz();
 ```
 
-See an example to [printi accel](./examples/print_accel/print_accel.ino).
-
 ## Switch
 
 You can get switch info about pushed or not.
