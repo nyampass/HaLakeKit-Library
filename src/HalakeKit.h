@@ -22,6 +22,7 @@
 class HalakeKit {
   public:
   HalakeKit();
+  void setup();
   float accel_x();
   float accel_y();
   float accel_z();

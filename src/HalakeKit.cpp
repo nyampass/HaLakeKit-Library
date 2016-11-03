@@ -20,6 +20,11 @@ void I2CwriteByte(uint8_t Address, uint8_t Register, uint8_t Data) {
 
 // Initializations
 HalakeKit::HalakeKit() {
+}
+
+void HalakeKit::setup() {
+  pinMode(HALAKE_KIT_SWITCH_PIN, INPUT);
+
   // Arduino initializations
   Wire.begin(4, 14);
   delay(40);
