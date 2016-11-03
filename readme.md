@@ -1,13 +1,13 @@
 # HaLakeKit-library
 A library to control io of halake-kit.
 
-https://robip.halake.com/halake-board.html
+[![image](https://robip.halake.com/images/halake-board-description.png)](https://robip.halake.com/halake-board.html)
 
 # Install to Arduino IDE
 
 1. Open library manager.
 
-Sketch -> Include library -> Manage Libraries
+  Sketch -> Include library -> Manage Libraries
 
 2. Search "HaLakeKit" on library manager.
 
@@ -42,7 +42,7 @@ halakekit.accel_print_xyz();
 delay(100);
 ```
 
-Example project for accel is available.
+[An Example project for accel](examples/PrintAccelerator/PrintAccelerator.ino) is available.
 
 ## Switch
 
