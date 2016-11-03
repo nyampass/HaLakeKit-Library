@@ -4,7 +4,7 @@ HaLakeKit halakekit;
 
 void setup() {
   Serial.begin(115200);
-  halakekit.setup();
+  halakekit.begin();
 }
 
 void loop() {

@@ -22,7 +22,7 @@ void I2CwriteByte(uint8_t Address, uint8_t Register, uint8_t Data) {
 HaLakeKit::HaLakeKit() {
 }
 
-void HaLakeKit::setup() {
+void HaLakeKit::begin() {
   pinMode(HALAKE_KIT_SWITCH_PIN, INPUT);
 
   // Arduino initializations

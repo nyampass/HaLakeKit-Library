@@ -30,7 +30,7 @@ void create_request() {
 ​
 void setup() {
   Serial.begin(115200);
-  halakekit.setup();
+  halakekit.begin();
   // put your setup code here, to run once:
   WiFiMulti.addAP(ssid, password);
 }

@@ -22,7 +22,7 @@
 class HaLakeKit {
   public:
   HaLakeKit();
-  void setup();
+  void begin();
   float accel_x();
   float accel_y();
   float accel_z();

@@ -15,15 +15,15 @@ A library to control io of halake-kit.
 
 # Useage
 
-## Setup
+## Begin
 
-Plese call setup of HaLakeKit in setup.
+Plese call begin of HaLakeKit in setup of Arduino.
 
 ```
 HaLakeKit halakekit;
 
 void setup() {
-  halakekit.setup();
+  halakekit.begin();
 }
 ```
 
