@@ -1,16 +1,16 @@
-#include "HalakeKit.h"
+#include "HaLakeKit.h"
 
 void I2Cread(uint8_t Address, uint8_t Register, uint8_t Nbytes, uint8_t* Data) {
   Wire.beginTransmission(Address);
   Wire.write(Register);
   Wire.endTransmission();
- 
-  Wire.requestFrom(Address, Nbytes); 
+
+  Wire.requestFrom(Address, Nbytes);
   uint8_t index=0;
   while (Wire.available())
     Data[index++]=Wire.read();
 }
- 
+
 void I2CwriteByte(uint8_t Address, uint8_t Register, uint8_t Data) {
   Wire.beginTransmission(Address);
   Wire.write(Register);
@@ -19,7 +19,12 @@ void I2CwriteByte(uint8_t Address, uint8_t Register, uint8_t Data) {
 }
 
 // Initializations
-HalakeKit::HalakeKit() {
+HaLakeKit::HaLakeKit() {
+}
+
+void HaLakeKit::begin() {
+  pinMode(HALAKE_KIT_SWITCH_PIN, INPUT);
+
   // Arduino initializations
   Wire.begin(4, 14);
   delay(40);
@@ -32,52 +37,52 @@ HalakeKit::HalakeKit() {
   delay(10);
 }
 
-void HalakeKit::accel_update() {
+void HaLakeKit::accel_update() {
   I2Cread(MPU9250_ADDRESS, 0x3B, 14, accel_buf);
 }
 
-float HalakeKit::accel_get(int highIndex, int lowIndex) {
+float HaLakeKit::accel_get(int highIndex, int lowIndex) {
   int16_t v = -(accel_buf[highIndex]<<8 | accel_buf[lowIndex]);
   return ((float)v) * 16.0/32768.0;
 }
 
-float HalakeKit::accel_x() {
+float HaLakeKit::accel_x() {
   accel_update();
   return accel_get(0, 1);
 }
 
-float HalakeKit::accel_y() {
+float HaLakeKit::accel_y() {
   accel_update();
   return accel_get(2, 3);
 }
 
-float HalakeKit::accel_z() {
+float HaLakeKit::accel_z() {
   accel_update();
   return accel_get(4, 5);
 }
 
-float HalakeKit::accel_comp() {
+float HaLakeKit::accel_comp() {
   accel_update();
   return sqrt(pow(accel_get(0, 1), 2) +
     pow(accel_get(2, 3), 2) +
     pow(accel_get(4, 5), 2));
 }
 
-void HalakeKit::accel_print_xyz() {
+void HaLakeKit::accel_print_xyz() {
   float x = accel_x();
   float y = accel_y();
   float z = accel_z();
 
-  Serial.print(x); 
+  Serial.print(x);
   Serial.print(",");
   Serial.print(y);
   Serial.print(",");
-  Serial.print(z);  
+  Serial.print(z);
   Serial.print(": ");
   Serial.print(accel_comp());
   Serial.println();
 }
 
-bool HalakeKit::switch_pushed() {
+bool HaLakeKit::switch_pushed() {
   return HIGH == digitalRead(HALAKE_KIT_SWITCH_PIN) ? false : true;
 }

@@ -1,18 +1,19 @@
-#include <HalakeKit.h>
+#include <HaLakeKit.h>
 
-HalakeKit halake_kit;
+HaLakeKit halakekit;
 
 void setup() {
   Serial.begin(115200);
+  halakekit.begin();
 }
 
 void loop() {
   delay(100);
   Serial.println("print xyz and comp");
-  Serial.println(halake_kit.accel_x());
-  Serial.println(halake_kit.accel_y());
-  Serial.println(halake_kit.accel_z());
-  Serial.println(halake_kit.accel_comp());
+  Serial.println(halakekit.accel_x());
+  Serial.println(halakekit.accel_y());
+  Serial.println(halakekit.accel_z());
+  Serial.println(halakekit.accel_comp());
 
-  halake_kit.accel_print_xyz();
+  halakekit.accel_print_xyz();
 }

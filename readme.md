@@ -1,48 +1,55 @@
-# HalakeKit-library
+# HaLakeKit-library
 A library to control io of halake-kit.
 
-https://robip.halake.com/halake-board.html
+[![image](https://robip.halake.com/images/halake-board-description.png)](https://robip.halake.com/halake-board.html)
 
-# Setup
+# Install to Arduino IDE
 
-```
-cd [arduino-sketch-dir]/libraries
-git clone git@github.com:nyampass/HaLakeKit-Library.git
-```
+1. Open library manager.
 
-If you don't want to use git, you can use with wget.
+  Sketch -> Include library -> Manage Libraries
 
-```
-cd [arduino-sketch-dir]/libraries
-wget https://github.com/nyampass/HaLakeKit-Library/archive/master.zip -O halakekit.zip
-unzip halakekit.zip
-```
+2. Search "HaLakeKit" on library manager.
+
+3. Click "Install" button.
 
 # Useage
+
+## Begin
+
+Plese call begin of HaLakeKit in setup of Arduino.
+
+```
+HaLakeKit halakekit;
+
+void setup() {
+  halakekit.begin();
+}
+```
+
 
 ## Accel
 
 You can get or print accel info.
 
 ```
-HalakeKit halake_kit;
+Serial.println(halakekit.accel_x());
+Serial.println(halakekit.accel_y());
+Serial.println(halakekit.accel_z());
+Serial.println(halakekit.accel_comp());
 
-Serial.println(halake_kit.accel_x());
-Serial.println(halake_kit.accel_y());
-Serial.println(halake_kit.accel_z());
-Serial.println(halake_kit.accel_comp());
-
-halake_kit.accel_print_xyz();
+halakekit.accel_print_xyz();
+delay(100);
 ```
+
+[An Example project for accel](examples/PrintAccelerator/PrintAccelerator.ino) is available.
 
 ## Switch
 
 You can get switch info about pushed or not.
 
 ```
-HalakeKit halake_kit;
-
-if ( halake_kit.switch_pushed() ) {
+if ( halakekit.switch_pushed() ) {
   // do something
 }
 ```
