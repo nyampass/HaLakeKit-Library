@@ -19,7 +19,7 @@ A library to control io of HaLakeKit.
 
 Plese call begin of HaLakeKit in setup of Arduino.
 
-```
+```c
 HaLakeKit halakekit;
 
 void setup() {
@@ -32,7 +32,7 @@ void setup() {
 
 You can get or print accel info.
 
-```
+```c
 Serial.println(halakekit.accel_x());
 Serial.println(halakekit.accel_y());
 Serial.println(halakekit.accel_z());
@@ -48,7 +48,7 @@ delay(100);
 
 You can get switch info about pushed or not.
 
-```
+```c
 if ( halakekit.switch_pushed() ) {
   // do something
 }
