@@ -2,7 +2,7 @@
 #include <ESP8266WiFi.h>
 #include <ESP8266WiFiMulti.h>
 #include <ESP8266HTTPClient.h>
-#include <HalakeKit.h>
+#include <HaLakeKit.h>
 ​
 #define USE_SERIAL Serial
 ​
@@ -10,7 +10,7 @@ String server_url    = "http://192.168.11.xx/";
 const char *ssid     = "";
 const char *password = "";
 ​
-HalakeKit halake_kit;
+HaLakeKit halakekit;
 ESP8266WiFiMulti WiFiMulti;
 ​
 bool is_switch_on         = false;
@@ -30,6 +30,7 @@ void create_request() {
 ​
 void setup() {
   Serial.begin(115200);
+  halakekit.setup();
   // put your setup code here, to run once:
   WiFiMulti.addAP(ssid, password);
 }
@@ -41,7 +42,7 @@ void loop() {
 ​
   // update switch state
   prev_switch_state = current_switch_state;
-  current_switch_state = halake_kit.switch_pushed();
+  current_switch_state = halakekit.switch_pushed();
 ​
   current_millisec = millis();
   if ( current_switch_state == true ) {
