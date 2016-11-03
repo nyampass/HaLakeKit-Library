@@ -1,5 +1,5 @@
 # HaLakeKit-library
-A library to control io of halake-kit.
+A library to control io of HaLakeKit.
 
 [![image](https://robip.halake.com/images/halake-board-description.png)](https://robip.halake.com/halake-board.html)
 
