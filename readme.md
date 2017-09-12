@@ -57,14 +57,14 @@ if ( halakekit.switch_pushed() ) {
 ## Magnetometer
 
 Adjust offset value like this.
-```
+```c
 halakekit.mag_x_offset = -50;
 halakekit.mag_y_offset = -55;
 // halakekit.mag_z_offset = -10;
 ```
 
 You gan get or print magnetometer values.
-```
+```c
 halakekit.mag_update();
 Serial.println("print mag values");
 Serial.println("mag_x: " + String(halakekit.mag_x()));
