@@ -17,11 +17,28 @@
 #define ACC_FULL_SCALE_8_G       0x10
 #define ACC_FULL_SCALE_16_G      0x18
 
-#define HALAKE_KIT_SWITCH_PIN    0
+#define AK8963_RA_HXL                   0x03
+#define AK8963_RA_CNTL1                 0x0A
+#define AK8963_RA_ASAX                  0x10
+
+#define AK8963_MODE_POWERDOWN           0x0
+#define AK8963_MODE_SINGLE              0x1
+#define AK8963_MODE_CONTINUOUS_8HZ      0x2
+#define AK8963_MODE_EXTERNAL            0x4
+#define AK8963_MODE_CONTINUOUS_100HZ    0x6
+#define AK8963_MODE_SELFTEST            0x8
+#define AK8963_MODE_FUSEROM             0xF
+
+#define HALAKE_KIT_SWITCH_PIN    3
 
 class HaLakeKit {
   public:
-  HaLakeKit();
+  int16_t mag_x_offset, mag_y_offset, mag_z_offset;
+
+  HaLakeKit():
+    mag_x_offset(0),
+    mag_y_offset(0),
+    mag_z_offset(0) {};
   void begin();
   float accel_x();
   float accel_y();
@@ -30,9 +47,20 @@ class HaLakeKit {
   void accel_print_xyz();
   bool switch_pushed();
 
+  void mag_update();
+  int16_t mag_x();
+  int16_t mag_y();
+  int16_t mag_z();
+  void mag_set_mode(uint8_t mode);
+  float mag_horiz_direction();
+
   private:
   uint8_t accel_buf[14];
-  float accel_get(int highIndex, int lowIndex);
+  uint8_t mag_buf[7];
+  uint8_t mag_x_adjust, mag_y_adjust, mag_z_adjust;
+  void mag_read_adjust_values();
+  float accel_get(int high_index, int low_index);
+  int16_t mag_get(uint8_t high_index, uint8_t low_index);
   void accel_update();
 };
 

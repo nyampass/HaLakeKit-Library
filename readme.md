@@ -54,6 +54,25 @@ if ( halakekit.switch_pushed() ) {
 }
 ```
 
+## Magnetometer
+
+Adjust offset value like this.
+```
+halakekit.mag_x_offset = -50;
+halakekit.mag_y_offset = -55;
+// halakekit.mag_z_offset = -10;
+```
+
+You gan get or print magnetometer values.
+```
+halakekit.mag_update();
+Serial.println("print mag values");
+Serial.println("mag_x: " + String(halakekit.mag_x()));
+Serial.println("max_y: " + String(halakekit.mag_y()));
+Serial.println("mag_z: " + String(halakekit.mag_z()));
+Serial.println("horizontal direction: " + String(halakekit.mag_horiz_direction()));
+```
+
 # License
 
 MIT
