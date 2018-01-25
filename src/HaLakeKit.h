@@ -53,10 +53,12 @@ class HaLakeKit {
   int16_t mag_z();
   void mag_set_mode(uint8_t mode);
   float mag_horiz_direction();
+  float temperature();
 
   private:
   uint8_t accel_buf[14];
   uint8_t mag_buf[7];
+  uint8_t temp_buf[2];
   uint8_t mag_x_adjust, mag_y_adjust, mag_z_adjust;
   void mag_read_adjust_values();
   float accel_get(int high_index, int low_index);

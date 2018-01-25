@@ -131,3 +131,11 @@ void HaLakeKit::mag_read_adjust_values() {
   mag_y_adjust = buff[1];
   mag_z_adjust = buff[2];
 }
+
+float HaLakeKit::temperature() {
+  I2Cread(MPU9250_ADDRESS, 0x41, 2, temp_buf);
+
+  float temp = (float)(temp_buf[0] << 8 | temp_buf[1]);
+  temp = (temp/333.87) + 21.0;
+  return temp;
+}
