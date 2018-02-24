@@ -3,6 +3,8 @@
 #define HaLakeKit_h
 #include <Arduino.h>
 #include <Wire.h>
+#include <ESP8266WiFi.h>
+#include <ESP8266WebServer.h>
 
 #define MPU9250_ADDRESS          0x69
 #define MAG_ADDRESS              0x0C
@@ -55,6 +57,10 @@ class HaLakeKit {
   float mag_horiz_direction();
   float temperature();
 
+  void httpServer(char *ssid, char *pass, std::function<void()> handle);
+  void httpSend(String html);
+  void httpLoop();
+
   private:
   uint8_t accel_buf[14];
   uint8_t mag_buf[7];
@@ -64,6 +70,7 @@ class HaLakeKit {
   float accel_get(int high_index, int low_index);
   int16_t mag_get(uint8_t high_index, uint8_t low_index);
   void accel_update();
+  void wifiClient(char *ssid, char * pass);
 };
 
 #endif

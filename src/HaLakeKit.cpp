@@ -1,5 +1,7 @@
 #include "HaLakeKit.h"
 
+ESP8266WebServer server(80);
+
 void I2Cread(uint8_t Address, uint8_t Register, uint8_t Nbytes, uint8_t* Data) {
   Wire.beginTransmission(Address);
   Wire.write(Register);
@@ -138,4 +140,38 @@ float HaLakeKit::temperature() {
   float temp = (float)(temp_buf[0] << 8 | temp_buf[1]);
   temp = (temp/333.87) + 21.0;
   return temp;
+}
+
+void HaLakeKit::wifiClient(char *ssid, char * pass){
+  Serial.println("initializing WiFi");
+  WiFi.disconnect();
+  WiFi.mode(WIFI_OFF);
+  Serial.println("Connecting");
+  WiFi.mode(WIFI_STA);
+  WiFi.begin(ssid, pass);
+  while(WiFi.status() != WL_CONNECTED){
+    delay(1000);
+    Serial.print(".");
+  }
+  Serial.print("\nIP: ");
+  Serial.println(WiFi.localIP());
+}
+
+void HaLakeKit::httpSend(String html){
+  server.send(200, "text/html", html);
+};
+
+void HaLakeKit::httpLoop(){
+  server.handleClient();
+}
+
+void HaLakeKit::httpServer(char *ssid, char *pass, std::function<void()> handle) {
+  if(!Serial.available()){
+    Serial.begin(115200);
+    delay(10);
+  }
+  wifiClient(ssid, pass);
+  server.on("/", handle);
+  server.begin();
+  Serial.println("Server Started");
 }
